@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="ajax-css.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <a href="" class="header__logo">
+                <img src="image/logo.png" alt="">
+            </a>
+            <div class="header__login">
+                <span class="ajax-btn">Click for Show</span>
+                <input class="input-login" type="text" placeholder="Write your github login">
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="main">
+    <div class="container">
+        <div class="ajax-container">
+            <div class="ajax-left">
+                <img src="" alt="" class="ajax-avatar">
+                <div class="user-login"><span>Login </span></div>
+                <div class="user-name"><span>Name </span></div>
+                <div class="user-link"><span>GitHub </span></div>
+                <div class="user-reset">Clear Info</div>
+            </div>
+            <div class="ajax-right">
+                <div class="ajax-result">Here will be repositories</div>
+                <div class="ajax-items">
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+
+<!--<script-->
+<!--        src="https://code.jquery.com/jquery-3.6.3.js"-->
+<!--        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="-->
+<!--        crossorigin="anonymous"></script>-->
+
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src="ajax-script.js"></script>
+<script src="ajax-service.js"></script>
+
+</html>
