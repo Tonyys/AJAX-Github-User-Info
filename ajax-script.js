@@ -15,6 +15,15 @@ ajaxBtn.addEventListener('click',()=>{
     const promiseUserRepos = getUserRepos(inputLogin.value);
     promiseUserRepos.then(onReposReceived);
 })
+document.addEventListener( 'keyup', event => {
+    if( event.code === 'Enter' ) {
+        const promiseUser = getUserInfo(inputLogin.value);
+        promiseUser.then(onDataReceived).catch(failGetingData);
+
+        const promiseUserRepos = getUserRepos(inputLogin.value);
+        promiseUserRepos.then(onReposReceived);
+    }
+});
 userResetInfo.addEventListener('click',()=> {
     userName.innerHTML = '<span>Login </span>';
     userLogin.innerHTML = '<span>Name </span>';
