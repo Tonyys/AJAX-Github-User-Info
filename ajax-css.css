@@ -116,6 +116,7 @@ body {
     padding-left: 60px;
     width: 80%;
     height: 100%;
+    transition: .3s;
 }
 /* width */
 .ajax-right.ajax-right::-webkit-scrollbar {

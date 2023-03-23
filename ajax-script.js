@@ -1,4 +1,5 @@
 const ajaxResult = document.querySelector('.ajax-result')
+const ajaxContainer = document.querySelector('.ajax-right')
 const userLogin = document.querySelector('.user-login')
 const userName = document.querySelector('.user-name')
 const userAvatar = document.querySelector('.ajax-avatar')
@@ -9,21 +10,19 @@ const ajaxItems = document.querySelector('.ajax-items')
 const userResetInfo = document.querySelector('.user-reset')
 
 ajaxBtn.addEventListener('click',()=>{
-    const promiseUser = getUserInfo(inputLogin.value);
-    promiseUser.then(onDataReceived).catch(failGetingData);
-
-    const promiseUserRepos = getUserRepos(inputLogin.value);
-    promiseUserRepos.then(onReposReceived);
+    userData()
+    userRepositories()
+    ajaxContainer.style.opacity = '.5'
 })
+
 document.addEventListener( 'keyup', event => {
     if( event.code === 'Enter' ) {
-        const promiseUser = getUserInfo(inputLogin.value);
-        promiseUser.then(onDataReceived).catch(failGetingData);
-
-        const promiseUserRepos = getUserRepos(inputLogin.value);
-        promiseUserRepos.then(onReposReceived);
+        userData()
+        userRepositories()
+        ajaxContainer.style.opacity = '.5'
     }
 });
+
 userResetInfo.addEventListener('click',()=> {
     userName.innerHTML = '<span>Login </span>';
     userLogin.innerHTML = '<span>Name </span>';
@@ -34,6 +33,25 @@ userResetInfo.addEventListener('click',()=> {
     ajaxResult.style.display = 'flex';
     ajaxResult.innerHTML = 'Here will be repositories';
 })
+
+const userData = async ()=> {
+    const userData = await getUserInfo(inputLogin.value);
+    try {
+        onDataReceived(userData)
+    } catch (error) {
+        failGetingData(error)
+    }
+}
+
+const userRepositories = async ()=> {
+    const userRepo = await getUserRepos(inputLogin.value);
+    try {
+        onReposReceived(userRepo)
+    } catch (error) {
+        failGetingData(error)
+    }
+}
+
 function onDataReceived (data) {
     const loginSpan = document.createElement('span')
     const hiElement = document.createElement('span')
@@ -65,8 +83,6 @@ function onDataReceived (data) {
         linkElement.target = '_blank';
         userLink.appendChild(linkElement);
     }
-
-
 }
 
 function onReposReceived (data) {
@@ -117,6 +133,8 @@ function onReposReceived (data) {
 
         console.log(project);
         ajaxItems.appendChild(project);
+
+        ajaxContainer.style.opacity = '1'
     })
 }
 

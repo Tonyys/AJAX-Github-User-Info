@@ -4,18 +4,15 @@
 //     return promise
 // }
 
-function getUserInfo(userLogin) {
-    const promise = axios.get('https://api.github.com/users/'+ userLogin)
-
-    return promise.then((data)=> {
-        return data.data;
-    });
+const getUserInfo = async (userUrl)=> {
+    const promise = await fetch(`https://api.github.com/users/${userUrl}`)
+    const result = await promise.json()
+    return result
 }
 
-function getUserRepos(userLogin) {
-    const promise = axios.get('https://api.github.com/users/'+ userLogin + '/repos')
+const getUserRepos = async (userUrl)=> {
+    const promise = await fetch(`https://api.github.com/users/${userUrl}/repos`)
 
-    return promise.then((data)=> {
-        return data.data;
-    });
+    const result = await promise.json()
+    return result
 }
